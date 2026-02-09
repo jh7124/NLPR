@@ -487,25 +487,31 @@
             color: #533f03;
         }
 
-        /* Dialogflow Messenger Styling */
+        /* Dialogflow Messenger Custom Styling */
         df-messenger {
             z-index: 999;
             position: fixed;
-            --df-messenger-font-color: #000;
+            bottom: 20px;
+            right: 20px;
+            --df-messenger-font-color: #333;
             --df-messenger-font-family: 'Poppins', sans-serif;
-            --df-messenger-chat-background: #f3f6fc;
+            --df-messenger-chat-background: #f8f9fa;
             --df-messenger-message-user-background: #667eea;
             --df-messenger-message-user-font-color: #fff;
             --df-messenger-message-bot-background: #fff;
-            --df-messenger-chat-bubble-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --df-messenger-chat-bubble-background: #667eea;
             --df-messenger-chat-bubble-icon-color: #fff;
             --df-messenger-send-icon-color: #667eea;
             --df-messenger-input-box-focus-border-color: #667eea;
-            --df-messenger-chat-border-radius: 20px;
-            --df-messenger-titlebar-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --df-messenger-chat-border-radius: 15px;
+            --df-messenger-titlebar-background: #667eea;
             --df-messenger-titlebar-font-color: #fff;
-            bottom: 20px;
-            right: 20px;
+            --df-messenger-chat-window-height: 500px;
+        }
+
+        /* Rich content styling inside chat */
+        df-messenger::part(chat-bubble) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         /* Responsive */
@@ -557,6 +563,10 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .support-highlight {
+                margin: 20px;
             }
         }
     </style>
@@ -788,17 +798,27 @@
         </df-messenger-chat-bubble>
     </df-messenger>
 
-    <!-- Auto-trigger welcome message when chat opens -->
+    <!-- Auto-trigger welcome when chat opens -->
     <script>
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // Listen for chat open event
             dfMessenger.addEventListener('df-chat-open-changed', function(event) {
                 if (event.detail.isOpen) {
-                    // Send a welcome trigger when chat is opened
-                    dfMessenger.renderCustomText('Hi');
+                    // Trigger welcome event when chat opens
+                    dfMessenger.sendEvent({ event: 'WELCOME' });
                 }
+            });
+
+            // Handle chip clicks - they work automatically as user input
+            dfMessenger.addEventListener('df-chip-clicked', function(event) {
+                console.log('Chip clicked:', event.detail.text);
+                // Chips automatically send their text as user input
+            });
+
+            // Handle rich content responses
+            dfMessenger.addEventListener('df-response-received', function(event) {
+                console.log('Response received:', event.detail.response);
             });
         });
     </script>
