@@ -1,0 +1,17 @@
+{
+  "name": "c98ae0bb-45da-4361-9208-d005c78ae6ad",
+  "displayName": "Personalized Greeting",
+  "placeholders": [ {
+    "id": "sys",
+    "name": "sys"
+  } ],
+  "modelParameter": {
+    "temperature": 0.5,
+    "maxDecodeSteps": 128,
+    "topP": 0.94999999,
+    "topK": 40
+  },
+  "llmModelSettings": {
+    "model": "gemini-2.5-flash"
+  }
+}

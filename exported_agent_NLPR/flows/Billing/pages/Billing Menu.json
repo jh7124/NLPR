@@ -1,0 +1,30 @@
+{
+  "name": "260db6aa-6b72-4c9a-a357-b8578a29e951",
+  "displayName": "Billing Menu",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "💳 **Billing Help**\r\n\r\nI can help you with:\r\n1. 📄 Get an invoice/receipt\r\n2. ❌ Payment declined\r\n3. ⚠️ Charged twice\r\n4. ❓ Other billing question\r\n\r\nWhat do you need?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "billing.invoice",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Invoice Request",
+    "name": "f4582e4e-293b-4ce6-afc9-4479f91981b5"
+  }, {
+    "intent": "billing.payment-issue",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Payment Issue",
+    "name": "e42f268a-5c38-42c2-8d2e-98c8795f884a"
+  } ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "c8eab4d0-4427-41e0-b973-082a83f314cc",
+  "displayName": "Order Investigation",
+  "goal": "Help customers investigate issues with their orders including delays, missing items, or delivery problems",
+  "tokenCount": 193,
+  "instruction": {
+    "steps": [ {
+      "text": "1. First, ask for the customer's order number if not already provided\r\n2. Look up the order details using the order tracking tool\r\n3. If the order is delayed:\r\n   - Apologize for the inconvenience\r\n   - Explain possible reasons (weather, carrier delays, high volume)\r\n   - Provide updated delivery estimate if available\r\n4. If the order shows delivered but customer hasn't received it:\r\n   - Ask them to check with neighbors or building management\r\n   - Suggest checking around the property\r\n   - Offer to file a missing package claim\r\n5. If the order has issues:\r\n   - Offer solutions: replacement, refund, or store credit\r\n   - Create a support ticket if needed\r\n6. Always end by asking if there's anything else you can help with"
+    } ]
+  },
+  "playbookType": "TASK",
+  "codeBlock": {
+  
+  }
+}

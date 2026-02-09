@@ -1,0 +1,39 @@
+{
+  "name": "ce54fcb3-1753-4198-b3bc-8e96c0929df4",
+  "displayName": "Invoice Request",
+  "form": {
+    "parameters": [ {
+      "displayName": "order_number",
+      "required": true,
+      "entityType": "@order_number",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "What's the order number you need an invoice for?" ]
+            },
+            "languageCode": "en"
+          } ]
+        }
+      }
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "📄 I'll get your invoice." ]
+      },
+      "languageCode": "en"
+    } ],
+    "webhook": "ShopEase Backend",
+    "tag": "get_invoice"
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "End Flow",
+    "name": "828557a8-0ec1-450c-b197-47498f914399"
+  } ]
+}

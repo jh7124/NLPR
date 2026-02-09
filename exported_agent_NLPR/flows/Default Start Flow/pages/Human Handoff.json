@@ -1,0 +1,25 @@
+{
+  "name": "6aed8c85-3479-41fc-889a-1a67a043cec8",
+  "displayName": "Human Handoff",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "🙋 **Connect with Support**\r\n\r\nI'll connect you with a human agent.\r\n\r\n**Contact Options:**\r\n📞 Phone: 1-800-SHOP-EASE (1-800-746-7327)\r\n💬 Live Chat: shopease.com/chat\r\n📧 Email: support@shopease.com\r\n\r\n**Current Wait Times:**\r\n• Phone: ~5 minutes\r\n• Live Chat: ~2 minutes\r\n\r\nIs there anything else I can help you with before you go?" ]
+      },
+      "languageCode": "en"
+    } ],
+    "webhook": "ShopEase Backend",
+    "tag": "escalate_to_human"
+  },
+  "transitionRoutes": [ {
+    "intent": "goodbye",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "End Flow",
+    "name": "7a8ddae2-3aa0-40d2-95af-d4f965e79f91"
+  } ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "f4ea7dfe-9a78-410b-a057-303ed5ca63f1",
+  "displayName": "Return Not Eligible",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "😔 Unfortunately, your order is not eligible for return.\r\n\r\nThis could be because:\r\n• The 30-day return window has passed\r\n• The order hasn't been delivered yet\r\n• Items are marked as final sale\r\n\r\nWould you like to speak with a customer service representative?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "confirm.yes",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "END_FLOW_WITH_HUMAN_ESCALATION",
+    "name": "1ebb199a-0a16-4506-94b2-0baf76399927"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Okay, is there anything else I can help with?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "End Flow",
+    "name": "59e383a2-b30e-4da5-9d75-c6434552c0e5"
+  } ]
+}

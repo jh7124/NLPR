@@ -1,0 +1,15 @@
+{
+  "name": "8d731853-b0de-42c0-9cde-03a55b861b53",
+  "displayName": "Verify Customer Identity",
+  "goal": "Verify the customer's identity using order number and email",
+  "tokenCount": 137,
+  "instruction": {
+    "steps": [ {
+      "text": "Verify the customer's identity before accessing sensitive information.\r\n\r\nSTEPS:\r\n1. Ask for their order number\r\n2. Ask for the email address associated with the order\r\n3. Use the verification tool to check if they match\r\n4. If verified, set session parameter \"identity_verified\" to true\r\n5. If not verified, apologize and offer to try again or connect to human agent\r\n\r\nKeep the process simple and friendly. Do not make the customer feel interrogated.\r\n\r\nWhen verification is complete (success or failure), return to the calling flow."
+    } ]
+  },
+  "playbookType": "TASK",
+  "codeBlock": {
+  
+  }
+}
