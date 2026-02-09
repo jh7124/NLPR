@@ -819,6 +819,63 @@
             // Handle rich content responses
             dfMessenger.addEventListener('df-response-received', function(event) {
                 console.log('Response received:', event.detail.response);
+                // Custom chip rendering for richContent chips
+                const responses = event.detail.response;
+                if (!responses) return;
+                // Find richContent payloads
+                responses.forEach(msg => {
+                    if (msg.payload && msg.payload.richContent) {
+                        msg.payload.richContent.forEach(row => {
+                            row.forEach(item => {
+                                if (item.type === 'chips' && Array.isArray(item.options)) {
+                                    // Render custom chips
+                                    renderCustomChips(item.options);
+                                }
+                            });
+                        });
+                    }
+                });
+                // Remove previous custom chips
+                function removeCustomChips() {
+                    const prev = document.getElementById('custom-df-chips');
+                    if (prev) prev.remove();
+                }
+                // Render chips below the chat input
+                function renderCustomChips(options) {
+                    removeCustomChips();
+                    const chatWindow = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
+                    if (!chatWindow) return;
+                    const inputBar = chatWindow.shadowRoot.querySelector('.input-container');
+                    if (!inputBar) return;
+                    const chipBar = document.createElement('div');
+                    chipBar.id = 'custom-df-chips';
+                    chipBar.style.display = 'flex';
+                    chipBar.style.gap = '10px';
+                    chipBar.style.margin = '10px 0 0 0';
+                    chipBar.style.flexWrap = 'wrap';
+                    options.forEach(opt => {
+                        const btn = document.createElement('button');
+                        btn.textContent = opt.text;
+                        btn.style.background = 'linear-gradient(135deg, #667eea 0%, #ffd700 100%)';
+                        btn.style.color = '#333';
+                        btn.style.border = 'none';
+                        btn.style.borderRadius = '20px';
+                        btn.style.padding = '8px 18px';
+                        btn.style.fontSize = '15px';
+                        btn.style.fontWeight = '600';
+                        btn.style.cursor = 'pointer';
+                        btn.style.boxShadow = '0 2px 8px rgba(102,126,234,0.12)';
+                        btn.onmouseenter = () => btn.style.opacity = '0.85';
+                        btn.onmouseleave = () => btn.style.opacity = '1';
+                        btn.onclick = () => {
+                            // Send chip text as user input
+                            dfMessenger.sendQuery(opt.text);
+                            removeCustomChips();
+                        };
+                        chipBar.appendChild(btn);
+                    });
+                    inputBar.parentNode.insertBefore(chipBar, inputBar.nextSibling);
+                }
             });
         });
     </script>
