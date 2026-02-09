@@ -1,0 +1,37 @@
+{
+  "name": "d2841c02-4a03-4441-a029-e05163fc3834",
+  "displayName": "Collect Order Number",
+  "form": {
+    "parameters": [ {
+      "displayName": "order_number",
+      "required": true,
+      "entityType": "@order_number",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "Please enter your order number (starts with SE-)" ]
+            },
+            "languageCode": "en"
+          } ]
+        }
+      }
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "I'll help you start a return. 🔄\r\n\r\nWhat's the order number for the item you want to return?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Check Eligibility",
+    "name": "005acc5f-044e-4943-9a5c-57ddd4bf4222"
+  } ]
+}

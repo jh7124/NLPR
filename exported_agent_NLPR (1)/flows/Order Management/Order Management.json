@@ -1,0 +1,66 @@
+{
+  "name": "7a0a09e0-4236-4e08-a758-cbab0002c7f1",
+  "displayName": "Order Management",
+  "transitionRoutes": [ {
+    "intent": "order.track",
+    "triggerFulfillment": {
+    
+    },
+    "name": "c7455dc0-3733-485e-8fb0-ee8667de99dc"
+  }, {
+    "intent": "shipping.inquiry",
+    "triggerFulfillment": {
+    
+    },
+    "name": "cc1991f4-3857-4afe-b26a-84dfb2e15cd5"
+  }, {
+    "condition": "true",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Collect Order Number",
+    "name": "6a763be9-e58d-49ba-b49d-324fbed323a6"
+  } ],
+  "eventHandlers": [ {
+    "event": "sys.no-match-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "43ad990e-2b84-488e-84f4-aac87008714b"
+  }, {
+    "event": "sys.no-input-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "e8da8800-2b29-4f0a-a6a9-a83d308e268f"
+  } ],
+  "nluSettings": {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001,
+    "modelTrainingMode": "MODEL_TRAINING_MODE_AUTOMATIC"
+  },
+  "advancedSettings": {
+    "enabled": true
+  },
+  "nluSettingsList": [ {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001,
+    "modelTrainingMode": "MODEL_TRAINING_MODE_AUTOMATIC",
+    "customConfigKey": "77a4307c-a9c7-401e-b77e-eeb02c130588",
+    "languageCode": "en"
+  } ],
+  "multiLanguageSettings": {
+    "enableMultiLanguageDetection": true,
+    "supportedResponseLanguageCodes": [ "en" ]
+  }
+}

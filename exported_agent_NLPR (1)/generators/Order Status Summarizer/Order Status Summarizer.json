@@ -1,0 +1,17 @@
+{
+  "name": "42d0d71b-1dbf-4847-abbf-d4b807a25eea",
+  "displayName": "Order Status Summarizer",
+  "placeholders": [ {
+    "id": "session",
+    "name": "session"
+  } ],
+  "modelParameter": {
+    "temperature": 0.5,
+    "maxDecodeSteps": 128,
+    "topP": 0.94999999,
+    "topK": 40
+  },
+  "llmModelSettings": {
+    "model": "gemini-2.5-flash"
+  }
+}

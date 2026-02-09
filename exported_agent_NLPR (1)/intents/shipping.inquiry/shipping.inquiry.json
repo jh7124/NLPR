@@ -1,0 +1,8 @@
+{
+  "name": "f7994e64-3dca-4608-9925-e77b1662ab81",
+  "displayName": "shipping.inquiry",
+  "priority": 500000,
+  "description": "Shipping questions",
+  "skipAutoAnnotation": true,
+  "numTrainingPhrases": 10
+}

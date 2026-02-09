@@ -1,0 +1,38 @@
+{
+  "name": "faae3631-b0cf-4e84-a00a-335e96d70501",
+  "displayName": "Collect Product Name",
+  "form": {
+    "parameters": [ {
+      "displayName": "product_name",
+      "required": true,
+      "entityType": "@sys.any",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "Please tell me the product name:" ]
+            },
+            "languageCode": "en"
+          } ]
+        }
+      },
+      "description": "This parameter captures the product name."
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "What product would you like to know about? \r\n\r\nYou can ask about:\r\n• Headphones\r\n• Smart Watch\r\n• Running Shoes\r\n• T-Shirts\r\n• And more!" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Display Product",
+    "name": "0ea2f401-138b-4d04-ba82-00ff3d937bb7"
+  } ]
+}

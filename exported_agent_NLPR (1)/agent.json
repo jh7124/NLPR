@@ -1,0 +1,51 @@
+{
+  "displayName": "NLPR",
+  "defaultLanguageCode": "en",
+  "timeZone": "Asia/Hong_Kong",
+  "enableLogging": true,
+  "projectNumber": 49002150833,
+  "speechToTextSettings": {
+  
+  },
+  "startFlow": "Default Start Flow",
+  "enableSpellCorrection": true,
+  "advancedSettings": {
+    "audioExportGcsDestination": {
+    
+    },
+    "speechSettings": {
+      "endpointerSensitivity": 90,
+      "noSpeechTimeout": {
+        "seconds": 5
+      }
+    },
+    "playbackInterruptionSettings": {
+    
+    },
+    "loggingSettings": {
+      "enableInteractionLogging": true
+    },
+    "speechAdaptationSettings": {
+    
+    }
+  },
+  "speakerIdSettings": {
+  
+  },
+  "bigqueryExportSettings": {
+  
+  },
+  "genAppBuilderSettings": {
+    "engine": "projects/49002150833/locations/us/collections/default_collection/engines/4a2d82ac-e198-4a12-b556-2100d2036faa-chat-1769677773"
+  },
+  "duplexSettings": {
+  
+  },
+  "answerFeedbackSettings": {
+    "enableAnswerFeedback": true
+  },
+  "enableMultiLanguageTraining": true,
+  "webClientSettings": {
+    "boxBorderRadius": "0"
+  }
+}

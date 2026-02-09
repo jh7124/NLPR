@@ -1,0 +1,6 @@
+{
+  "promptTexts": [ {
+    "text": "Generate a custom payload JSON for Dialogflow CX that displays quick action chips.\n\nThe chips should be:\n1. \"📦 Track Order\"\n2. \"🔄 Start Return\"  \n3. \"🚚 Shipping Info\"\n4. \"💳 Billing Help\"\n5. \"💬 Talk to Human\"\n\nOutput ONLY the JSON, no explanation:",
+    "languageCode": "en"
+  } ]
+}

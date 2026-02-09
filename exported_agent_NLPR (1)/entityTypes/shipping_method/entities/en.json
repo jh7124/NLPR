@@ -1,0 +1,23 @@
+{
+  "entities": [ {
+    "value": "economy",
+    "synonyms": [ "budget shipping", "cheap shipping", "economy", "standard delivery" ],
+    "languageCode": "en"
+  }, {
+    "value": "same_day",
+    "synonyms": [ "express", "immediate", "same_day", "urgent" ],
+    "languageCode": "en"
+  }, {
+    "value": "next_day",
+    "synonyms": [ "express", "fast shipping", "next_day", "overnight" ],
+    "languageCode": "en"
+  }, {
+    "value": "express",
+    "synonyms": [ "expedited", "express", "fast shipping", "overnight" ],
+    "languageCode": "en"
+  }, {
+    "value": "standard",
+    "synonyms": [ "normal", "regular", "standard", "typical" ],
+    "languageCode": "en"
+  } ]
+}

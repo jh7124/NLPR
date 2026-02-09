@@ -1,0 +1,7 @@
+{
+  "name": "2ad3fc4d-b555-45a8-b066-a3411c8f0933",
+  "displayName": "billing.payment-issue",
+  "priority": 500000,
+  "description": "Report payment problem",
+  "numTrainingPhrases": 10
+}

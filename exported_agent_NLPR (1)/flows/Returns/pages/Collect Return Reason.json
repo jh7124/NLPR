@@ -1,0 +1,50 @@
+{
+  "name": "ae05ba22-bd20-4eec-a704-9db2af8750ca",
+  "displayName": "Collect Return Reason",
+  "form": {
+    "parameters": [ {
+      "displayName": "return_reason",
+      "required": true,
+      "entityType": "@return_reason",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "What's the reason for your return?" ]
+            },
+            "languageCode": "en"
+          } ]
+        },
+        "repromptEventHandlers": [ {
+          "targetPage": "Collect Return Reason",
+          "event": "sys.no-match-1",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "Please select: damaged, wrong item, not as described, changed mind, size issue, or quality issue." ]
+              },
+              "languageCode": "en"
+            } ]
+          },
+          "name": "07d749dd-ceff-4d82-bb14-e23c43d45f34"
+        } ]
+      }
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Your order is eligible for return! ✅\r\n\r\nWhy are you returning this item?\r\n• Damaged or defective\r\n• Wrong item received\r\n• Not as described\r\n• Changed my mind\r\n• Size doesn't fit\r\n• Quality issue" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Confirm Return",
+    "name": "a04f4592-ab66-4b02-95ef-cae5fd487899"
+  } ]
+}

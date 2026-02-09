@@ -1,0 +1,8 @@
+{
+  "name": "91396916-de3c-481b-a878-027dc059a7ee",
+  "displayName": "order.track",
+  "priority": 500000,
+  "description": "Track order status",
+  "skipAutoAnnotation": true,
+  "numTrainingPhrases": 8
+}

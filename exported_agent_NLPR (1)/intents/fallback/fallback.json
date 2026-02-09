@@ -1,0 +1,7 @@
+{
+  "name": "84595f8b-fae7-49f4-b172-ade56e26dc3e",
+  "displayName": "fallback",
+  "priority": 500000,
+  "description": "Unrecognized input",
+  "numTrainingPhrases": 10
+}
