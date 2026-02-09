@@ -1,8 +1,0 @@
-{
-  "name": "a7840cdf-ad5f-4a7d-981f-95f31f7a4f14",
-  "displayName": "escalate.human",
-  "priority": 500000,
-  "description": "Request human agent",
-  "skipAutoAnnotation": true,
-  "numTrainingPhrases": 10
-}
