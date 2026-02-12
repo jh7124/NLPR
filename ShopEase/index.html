@@ -800,25 +800,32 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // A. Trigger the "Hi" message to start the bot proactively
-            // We wait 1 second to ensure the internal Shadow DOM is ready
+            // --- THE FIX IS HERE ---
+            // Instead of sending text ('Hi'), we send the specific EVENT ('sys.welcome-default')
+            // This matches exactly what you did in the simulator.
             setTimeout(() => {
-                dfMessenger.sendQuery('Hi');
-            }, 1000);
+                dfMessenger.sendRequest({
+                    queryInput: {
+                        event: {
+                            event: "sys.welcome-default",
+                            languageCode: "en"
+                        }
+                    }
+                });
+            }, 1000); 
+            // -----------------------
 
-            // B. Listen for the bot's response to reveal the window
+            // Listen for the bot's response to reveal the window
             dfMessenger.addEventListener('df-response-received', function(event) {
                 // 1. Reveal the Chat Window
                 if (dfMessenger.classList.contains('hide-initial-message')) {
                     dfMessenger.classList.remove('hide-initial-message');
                 }
                 
-                // 2. Handle Custom Chips (Gradient Buttons)
-                // Note: This looks for "RichContent" payloads specifically
+                // 2. Handle Custom Chips (Same as before)
                 const responses = event.detail.response;
                 if (!responses) return;
 
-                // Loop through messages to find richContent chips
                 responses.forEach(msg => {
                     if (msg.payload && msg.payload.richContent) {
                         msg.payload.richContent.forEach(row => {
@@ -832,24 +839,20 @@
                 });
             });
 
-            // --- Custom Chip Helper Functions ---
-
+            // --- Custom Chip Helper Functions (Same as before) ---
             function removeCustomChips() {
                 const prev = document.getElementById('custom-df-chips');
                 if (prev) prev.remove();
             }
 
             function renderCustomChips(options) {
-                removeCustomChips(); // Clear old chips first
-
-                // Access Shadow DOM safely
+                removeCustomChips(); 
                 const chatWindow = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
-                if (!chatWindow) return; // Guard clause if DOM isn't ready
+                if (!chatWindow) return;
 
                 const inputContainer = chatWindow.shadowRoot.querySelector('.input-container');
                 if (!inputContainer) return;
 
-                // Create Chip Container
                 const chipBar = document.createElement('div');
                 chipBar.id = 'custom-df-chips';
                 chipBar.style.cssText = 'display: flex; gap: 10px; margin: 10px 0 0 0; flex-wrap: wrap; justify-content: flex-end;';
@@ -857,8 +860,6 @@
                 options.forEach(opt => {
                     const btn = document.createElement('button');
                     btn.textContent = opt.text;
-                    
-                    // Gradient Style
                     btn.style.cssText = `
                         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                         color: white;
@@ -871,27 +872,17 @@
                         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                         transition: transform 0.1s;
                     `;
-
-                    // Hover Effects
                     btn.onmouseenter = () => btn.style.transform = 'scale(1.05)';
                     btn.onmouseleave = () => btn.style.transform = 'scale(1)';
-
-                    // Click Action
                     btn.onclick = () => {
                         dfMessenger.sendQuery(opt.text);
                         removeCustomChips();
                     };
                     chipBar.appendChild(btn);
                 });
-
-                // Insert chips above the input bar
                 inputContainer.parentNode.insertBefore(chipBar, inputContainer);
-                
-                // Optional: Scroll to bottom so chips are seen
                 const messageList = chatWindow.shadowRoot.querySelector('.message-list-wrapper');
                 if(messageList) messageList.scrollTop = messageList.scrollHeight;
             }
         });
     </script>
-</body>
-</html>
