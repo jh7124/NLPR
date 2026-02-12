@@ -781,6 +781,7 @@
     </footer>
 
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
     <df-messenger
         location="us-central1"
         project-id="nimble-augury-484901-q4"
@@ -789,32 +790,33 @@
         max-query-length="-1"
         allow-feedback="all"
         expand="true"
-        class="hide-initial-message"> <df-messenger-chat-bubble
-            chat-title="ShopBot - AI Support">
-        </df-messenger-chat-bubble>
+        class="hide-initial-message">
+        <df-messenger-chat-bubble chat-title="ShopBot - AI Support"></df-messenger-chat-bubble>
     </df-messenger>
 
     <script>
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // 1. Send the text "Hi" to trigger the bot
-            // We use a small delay to ensure the chat is ready
+            // A. Trigger the "Hi" message to start the bot proactively
+            // We wait 1 second to ensure the internal Shadow DOM is ready
             setTimeout(() => {
                 dfMessenger.sendQuery('Hi');
-            }, 500);
+            }, 1000);
 
-            // 2. Listen for the FIRST response from the bot
-            // Once received, we remove the hiding class so future user chats are visible
+            // B. Listen for the bot's response to reveal the window
             dfMessenger.addEventListener('df-response-received', function(event) {
+                // 1. Reveal the Chat Window
                 if (dfMessenger.classList.contains('hide-initial-message')) {
                     dfMessenger.classList.remove('hide-initial-message');
                 }
                 
-                // ... (Keep your existing chip rendering code below) ...
-                console.log('Response received:', event.detail.response);
+                // 2. Handle Custom Chips (Gradient Buttons)
+                // Note: This looks for "RichContent" payloads specifically
                 const responses = event.detail.response;
                 if (!responses) return;
+
+                // Loop through messages to find richContent chips
                 responses.forEach(msg => {
                     if (msg.payload && msg.payload.richContent) {
                         msg.payload.richContent.forEach(row => {
@@ -828,44 +830,64 @@
                 });
             });
 
+            // --- Custom Chip Helper Functions ---
+
             function removeCustomChips() {
                 const prev = document.getElementById('custom-df-chips');
                 if (prev) prev.remove();
             }
 
             function renderCustomChips(options) {
-                removeCustomChips();
+                removeCustomChips(); // Clear old chips first
+
+                // Access Shadow DOM safely
                 const chatWindow = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
-                if (!chatWindow) return;
-                const inputBar = chatWindow.shadowRoot.querySelector('.input-container');
-                if (!inputBar) return;
+                if (!chatWindow) return; // Guard clause if DOM isn't ready
+
+                const inputContainer = chatWindow.shadowRoot.querySelector('.input-container');
+                if (!inputContainer) return;
+
+                // Create Chip Container
                 const chipBar = document.createElement('div');
                 chipBar.id = 'custom-df-chips';
-                chipBar.style.display = 'flex';
-                chipBar.style.gap = '10px';
-                chipBar.style.margin = '10px 0 0 0';
-                chipBar.style.flexWrap = 'wrap';
+                chipBar.style.cssText = 'display: flex; gap: 10px; margin: 10px 0 0 0; flex-wrap: wrap; justify-content: flex-end;';
+
                 options.forEach(opt => {
                     const btn = document.createElement('button');
                     btn.textContent = opt.text;
-                    btn.style.background = 'linear-gradient(135deg, #667eea 0%, #ffd700 100%)';
-                    btn.style.color = '#333';
-                    btn.style.border = 'none';
-                    btn.style.borderRadius = '20px';
-                    btn.style.padding = '8px 18px';
-                    btn.style.fontSize = '15px';
-                    btn.style.fontWeight = '600';
-                    btn.style.cursor = 'pointer';
-                    btn.style.boxShadow = '0 2px 8px rgba(102,126,234,0.12)';
-                    btn.onmouseenter = () => btn.style.opacity = '0.85';
-                    btn.onmouseleave = () => btn.style.opacity = '1';
+                    
+                    // Gradient Style
+                    btn.style.cssText = `
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        border: none;
+                        border-radius: 20px;
+                        padding: 8px 15px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                        transition: transform 0.1s;
+                    `;
+
+                    // Hover Effects
+                    btn.onmouseenter = () => btn.style.transform = 'scale(1.05)';
+                    btn.onmouseleave = () => btn.style.transform = 'scale(1)';
+
+                    // Click Action
                     btn.onclick = () => {
                         dfMessenger.sendQuery(opt.text);
                         removeCustomChips();
                     };
                     chipBar.appendChild(btn);
                 });
-                inputBar.parentNode.insertBefore(chipBar, inputBar.nextSibling);
+
+                // Insert chips above the input bar
+                inputContainer.parentNode.insertBefore(chipBar, inputContainer);
+                
+                // Optional: Scroll to bottom so chips are seen
+                const messageList = chatWindow.shadowRoot.querySelector('.message-list-wrapper');
+                if(messageList) messageList.scrollTop = messageList.scrollHeight;
             }
         });
     </script>
