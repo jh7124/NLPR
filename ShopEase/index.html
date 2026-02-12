@@ -785,7 +785,8 @@
         agent-id="4a2d82ac-e198-4a12-b556-2100d2036faa"
         language-code="en"
         max-query-length="-1"
-        allow-feedback="all">
+        allow-feedback="all"
+        expand="true">
         <df-messenger-chat-bubble
             chat-title="ShopBot - AI Support">
         </df-messenger-chat-bubble>
@@ -795,14 +796,16 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // 'WELCOME' event immediately on load.
-            // This acts like sending "Hi" but does not show a text bubble in the chat history.
-            dfMessenger.sendEvent({ event: 'WELCOME' });
+            // Wait a brief moment to ensure the chat window is fully rendered
+            setTimeout(() => {
+                // 'WELCOME' is the standard event that triggers the Default Welcome Intent
+                // This acts like "Hi" but does not show a text bubble from the user
+                dfMessenger.sendEvent({ event: 'WELCOME' });
+            }, 500);
 
             // Handle chip clicks - they work automatically as user input
             dfMessenger.addEventListener('df-chip-clicked', function(event) {
                 console.log('Chip clicked:', event.detail.text);
-                // Chips automatically send their text as user input
             });
 
             // Handle rich content responses
