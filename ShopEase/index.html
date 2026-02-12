@@ -800,29 +800,27 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // --- THE FIX IS HERE ---
-            // Instead of sending text ('Hi'), we send the specific EVENT ('sys.welcome-default')
-            // This matches exactly what you did in the simulator.
+            // --- FIX: Correct JSON Structure ---
             setTimeout(() => {
                 dfMessenger.sendRequest({
                     queryInput: {
                         event: {
-                            event: "sys.welcome-default",
-                            languageCode: "en"
-                        }
+                            event: "sys.welcome-default"
+                        },
+                        languageCode: "en" // <--- Moved here (Sibling to 'event')
                     }
                 });
             }, 1000); 
-            // -----------------------
+            // -----------------------------------
 
-            // Listen for the bot's response to reveal the window
+            // Listener to reveal the chat window
             dfMessenger.addEventListener('df-response-received', function(event) {
-                // 1. Reveal the Chat Window
+                // Reveal Window
                 if (dfMessenger.classList.contains('hide-initial-message')) {
                     dfMessenger.classList.remove('hide-initial-message');
                 }
                 
-                // 2. Handle Custom Chips (Same as before)
+                // Render Chips
                 const responses = event.detail.response;
                 if (!responses) return;
 
@@ -839,7 +837,7 @@
                 });
             });
 
-            // --- Custom Chip Helper Functions (Same as before) ---
+            // --- Helper Functions ---
             function removeCustomChips() {
                 const prev = document.getElementById('custom-df-chips');
                 if (prev) prev.remove();
@@ -881,6 +879,8 @@
                     chipBar.appendChild(btn);
                 });
                 inputContainer.parentNode.insertBefore(chipBar, inputContainer);
+                
+                // Scroll fix
                 const messageList = chatWindow.shadowRoot.querySelector('.message-list-wrapper');
                 if(messageList) messageList.scrollTop = messageList.scrollHeight;
             }
