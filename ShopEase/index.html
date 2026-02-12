@@ -506,7 +506,9 @@
             --df-messenger-chat-border-radius: 15px;
             --df-messenger-titlebar-background: #667eea;
             --df-messenger-titlebar-font-color: #fff;
-            --df-messenger-chat-window-height: 500px;
+            /* CHANGED: Increased height and added width */
+            --df-messenger-chat-window-height: 650px;
+            --df-messenger-chat-window-width: 400px;
         }
 
         /* Rich content styling inside chat */
@@ -572,7 +574,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="#" class="logo">Shop<span>Ease</span></a>
         <ul class="nav-links">
@@ -589,7 +590,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Shop Smarter, <span>Live Better</span></h1>
@@ -601,7 +601,6 @@
         </div>
     </section>
 
-    <!-- Features -->
     <section class="features">
         <div class="feature-card">
             <div class="feature-icon">🚚</div>
@@ -625,13 +624,11 @@
         </div>
     </section>
 
-    <!-- Support Highlight -->
     <div class="support-highlight">
         <span>💬</span>
         <p><strong>Need help?</strong> Click the chat bubble in the bottom right corner to talk to ShopBot, our AI assistant. Get instant answers about orders, shipping, returns, and more!</p>
     </div>
 
-    <!-- Categories Section -->
     <section class="categories">
         <div class="section-title">
             <h2>Shop by Category</h2>
@@ -669,7 +666,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section class="products">
         <div class="section-title">
             <h2>Trending Products</h2>
@@ -736,7 +732,6 @@
         </div>
     </section>
 
-    <!-- Promo Banner -->
     <section class="promo-banner">
         <div class="promo-content">
             <h2>Join ShopEase Plus Today!</h2>
@@ -745,7 +740,6 @@
         <button class="btn-primary">Start Free Trial</button>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
@@ -784,7 +778,6 @@
         </div>
     </footer>
 
-    <!-- Dialogflow Messenger -->
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
     <df-messenger
         location="us-central1"
@@ -798,7 +791,6 @@
         </df-messenger-chat-bubble>
     </df-messenger>
 
-    <!-- Auto-trigger welcome when chat opens -->
     <script>
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
