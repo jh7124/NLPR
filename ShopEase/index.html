@@ -800,18 +800,9 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            // --- FIX: Correct JSON Structure ---
             setTimeout(() => {
-                dfMessenger.sendRequest({
-                    queryInput: {
-                        event: {
-                            event: "sys.welcome-default"
-                        },
-                        languageCode: "en" // <--- Moved here (Sibling to 'event')
-                    }
-                });
-            }, 1000); 
-            // -----------------------------------
+                dfMessenger.sendQuery('CUSTOM_INIT_TRIGGER'); 
+            }, 1000);
 
             // Listener to reveal the chat window
             dfMessenger.addEventListener('df-response-received', function(event) {
