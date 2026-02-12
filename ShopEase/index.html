@@ -570,8 +570,10 @@
             .support-highlight {
                 margin: 20px;
             }
-            df-messenger.hide-initial-message::part(user-message) {
-            display: none;
+            df-messenger.hide-initial-message {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
