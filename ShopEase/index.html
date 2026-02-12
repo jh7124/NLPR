@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
     <style>
         * {
             margin: 0;
@@ -487,35 +486,6 @@
             color: #533f03;
         }
 
-        /* Dialogflow Messenger Custom Styling */
-        df-messenger {
-            z-index: 999;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            --df-messenger-font-color: #333;
-            --df-messenger-font-family: 'Poppins', sans-serif;
-            --df-messenger-chat-background: #f8f9fa;
-            --df-messenger-message-user-background: #667eea;
-            --df-messenger-message-user-font-color: #fff;
-            --df-messenger-message-bot-background: #fff;
-            --df-messenger-chat-bubble-background: #667eea;
-            --df-messenger-chat-bubble-icon-color: #fff;
-            --df-messenger-send-icon-color: #667eea;
-            --df-messenger-input-box-focus-border-color: #667eea;
-            --df-messenger-chat-border-radius: 15px;
-            --df-messenger-titlebar-background: #667eea;
-            --df-messenger-titlebar-font-color: #fff;
-            /* CHANGED: Increased height and added width */
-            --df-messenger-chat-window-height: 650px;
-            --df-messenger-chat-window-width: 400px;
-        }
-
-        /* Rich content styling inside chat */
-        df-messenger::part(chat-bubble) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
         /* Responsive */
         @media (max-width: 1024px) {
             .category-grid, .product-grid {
@@ -778,88 +748,31 @@
         </div>
     </footer>
 
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
     <df-messenger
-        location="us-central1"
-        project-id="nimble-augury-484901-q4"
-        agent-id="4a2d82ac-e198-4a12-b556-2100d2036faa"
-        language-code="en"
-        max-query-length="-1"
-        allow-feedback="all">
-        <df-messenger-chat-bubble chat-title="ShopBot - AI Support"></df-messenger-chat-bubble>
+      location="us-central1"
+      project-id="nimble-augury-484901-q4"
+      agent-id="4a2d82ac-e198-4a12-b556-2100d2036faa"
+      language-code="en"
+      max-query-length="-1"
+      allow-feedback="all">
+      <df-messenger-chat-bubble
+        chat-title="NLPR">
+      </df-messenger-chat-bubble>
     </df-messenger>
-
-    <script>
-        document.addEventListener('df-messenger-loaded', function() {
-            const dfMessenger = document.querySelector('df-messenger');
-            
-            // Listener for rich content (Chips)
-            dfMessenger.addEventListener('df-response-received', function(event) {
-                const responses = event.detail.response;
-                if (!responses) return;
-
-                responses.forEach(msg => {
-                    if (msg.payload && msg.payload.richContent) {
-                        msg.payload.richContent.forEach(row => {
-                            row.forEach(item => {
-                                if (item.type === 'chips' && Array.isArray(item.options)) {
-                                    renderCustomChips(item.options);
-                                }
-                            });
-                        });
-                    }
-                });
-            });
-
-            // --- Helper Functions ---
-            function removeCustomChips() {
-                const prev = document.getElementById('custom-df-chips');
-                if (prev) prev.remove();
-            }
-
-            function renderCustomChips(options) {
-                removeCustomChips(); 
-                const chatWindow = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
-                if (!chatWindow) return;
-
-                const inputContainer = chatWindow.shadowRoot.querySelector('.input-container');
-                if (!inputContainer) return;
-
-                const chipBar = document.createElement('div');
-                chipBar.id = 'custom-df-chips';
-                chipBar.style.cssText = 'display: flex; gap: 10px; margin: 10px 0 0 0; flex-wrap: wrap; justify-content: flex-end;';
-
-                options.forEach(opt => {
-                    const btn = document.createElement('button');
-                    btn.textContent = opt.text;
-                    btn.style.cssText = `
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        color: white;
-                        border: none;
-                        border-radius: 20px;
-                        padding: 8px 15px;
-                        font-size: 14px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                        transition: transform 0.1s;
-                    `;
-                    btn.onmouseenter = () => btn.style.transform = 'scale(1.05)';
-                    btn.onmouseleave = () => btn.style.transform = 'scale(1)';
-                    btn.onclick = () => {
-                        dfMessenger.sendQuery(opt.text);
-                        removeCustomChips();
-                    };
-                    chipBar.appendChild(btn);
-                });
-                inputContainer.parentNode.insertBefore(chipBar, inputContainer);
-                
-                // Scroll fix
-                const messageList = chatWindow.shadowRoot.querySelector('.message-list-wrapper');
-                if(messageList) messageList.scrollTop = messageList.scrollHeight;
-            }
-        });
-    </script>
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        --df-messenger-font-color: #000;
+        --df-messenger-font-family: Google Sans;
+        --df-messenger-chat-background: #f3f6fc;
+        --df-messenger-message-user-background: #d3e3fd;
+        --df-messenger-message-bot-background: #fff;
+        bottom: 16px;
+        right: 16px;
+      }
+    </style>
 </body>
 </html>
