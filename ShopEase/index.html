@@ -570,10 +570,6 @@
             .support-highlight {
                 margin: 20px;
             }
-            df-messenger.hide-initial-message {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
         }
     </style>
 </head>
@@ -790,9 +786,7 @@
         agent-id="4a2d82ac-e198-4a12-b556-2100d2036faa"
         language-code="en"
         max-query-length="-1"
-        allow-feedback="all"
-        expand="true"
-        class="hide-initial-message">
+        allow-feedback="all">
         <df-messenger-chat-bubble chat-title="ShopBot - AI Support"></df-messenger-chat-bubble>
     </df-messenger>
 
@@ -800,18 +794,8 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            setTimeout(() => {
-                dfMessenger.sendQuery('CUSTOM_INIT_TRIGGER'); 
-            }, 1000);
-
-            // Listener to reveal the chat window
+            // Listener for rich content (Chips)
             dfMessenger.addEventListener('df-response-received', function(event) {
-                // Reveal Window
-                if (dfMessenger.classList.contains('hide-initial-message')) {
-                    dfMessenger.classList.remove('hide-initial-message');
-                }
-                
-                // Render Chips
                 const responses = event.detail.response;
                 if (!responses) return;
 
@@ -877,3 +861,5 @@
             }
         });
     </script>
+</body>
+</html>
