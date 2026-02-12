@@ -795,12 +795,9 @@
         document.addEventListener('df-messenger-loaded', function() {
             const dfMessenger = document.querySelector('df-messenger');
             
-            dfMessenger.addEventListener('df-chat-open-changed', function(event) {
-                if (event.detail.isOpen) {
-                    // Trigger welcome event when chat opens
-                    dfMessenger.sendEvent({ event: 'WELCOME' });
-                }
-            });
+            // 'WELCOME' event immediately on load.
+            // This acts like sending "Hi" but does not show a text bubble in the chat history.
+            dfMessenger.sendEvent({ event: 'WELCOME' });
 
             // Handle chip clicks - they work automatically as user input
             dfMessenger.addEventListener('df-chip-clicked', function(event) {
