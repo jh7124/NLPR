@@ -1,0 +1,32 @@
+{
+  "name": "ecf711fa-a932-4069-ad54-99c0f600726b",
+  "displayName": "Check Eligibility",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Let me check if your order is eligible for return..." ]
+      },
+      "languageCode": "en"
+    } ],
+    "webhook": "ShopEase Backend",
+    "tag": "check_return_eligibility"
+  },
+  "transitionRoutes": [ {
+    "condition": "$session.params.return_eligible = true",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Collect Return Reason",
+    "name": "8d62059e-ce8e-4e80-8694-2d58f34d2625"
+  }, {
+    "condition": "$session.params.return_eligible = false",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Return Not Eligible",
+    "name": "09e37524-b9cb-4905-b30f-5907a4ec3d48"
+  } ]
+}

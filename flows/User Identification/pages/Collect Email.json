@@ -1,0 +1,70 @@
+{
+  "name": "17fbe07c-2002-428f-861e-3b5f93b310da",
+  "displayName": "Collect Email",
+  "form": {
+    "parameters": [ {
+      "displayName": "customer_email",
+      "required": true,
+      "entityType": "@sys.email",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+        
+        },
+        "repromptEventHandlers": [ {
+          "targetPage": "Collect Email",
+          "event": "sys.invalid-parameter",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "Please provide a valid email address like name@example.com." ]
+              },
+              "languageCode": "en"
+            } ]
+          },
+          "name": "d64f06bf-a49b-4c51-80fd-628ae8eb0783"
+        } ]
+      }
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "To access your personal details, I need to look up your account. What is the email address you used to shop with us?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Ok, cancelling Sign In attempt." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "6ffaf164-c144-48d6-b31b-2a1a49fe137e",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "condition": "$session.params.customer_email != null",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Check Profile",
+    "name": "d4ff41fa-64d1-429c-8063-2f9b0018f111"
+  } ],
+  "eventHandlers": [ {
+    "event": "sys.no-match-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Please enter the correct email." ]
+        },
+        "languageCode": "en"
+      } ],
+      "enableGenerativeFallback": true
+    },
+    "name": "eac6ecd0-1fd9-4a8c-8b46-57c9418dd7fc"
+  } ]
+}

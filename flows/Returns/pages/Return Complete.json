@@ -1,0 +1,37 @@
+{
+  "name": "8c994102-7f2c-479d-917e-b2cccdd1385f",
+  "displayName": "Return Complete",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "✅ **Return Confirmed!**\r\n\r\nReturn ID: $session.params.return_id\r\n\r\n**Next Steps:**\r\n1. Check your email for the prepaid return label\r\n2. Pack items securely\r\n3. Drop off at any Walgreens, FedEx, or UPS location\r\n\r\n📧 Label sent to your email on file.\r\n⏰ Please ship within 14 days.\r\n\r\nIs there anything else I can help you with?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "goodbye",
+    "triggerFulfillment": {
+    
+    },
+    "name": "c20bb71b-6c41-4cd9-89f8-4dc4f5a4de8b",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+    
+    },
+    "name": "dcfbb769-1658-4884-bb52-62cfc092ab57",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "condition": "true",
+    "triggerFulfillment": {
+    
+    },
+    "name": "6639e026-31c7-4390-ac93-a6be58b437ec",
+    "targetPlaybook": "Main Support Handler"
+  } ]
+}

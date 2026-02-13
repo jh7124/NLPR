@@ -1,0 +1,46 @@
+{
+  "name": "28e43cc3-5c63-4655-bc02-8a00bef65cad",
+  "displayName": "Check Profile",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Checking email validity..." ]
+      },
+      "languageCode": "en"
+    } ],
+    "webhook": "ShopEase Backend",
+    "tag": "get_user_profile"
+  },
+  "transitionRoutes": [ {
+    "condition": "$session.params.user_found = true",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Welcome back, $session.params.first_name! I've pulled up your profile." ]
+        },
+        "languageCode": "en"
+      } ],
+      "setParameterActions": [ {
+        "parameter": "customer_email",
+        "value": "$session.params.customer_email"
+      } ]
+    },
+    "name": "7f6e87f4-eeef-4f54-adbc-f18f37715a42",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "condition": "$session.params.user_found = false",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I couldn't find an account with that email. Do you want to try a different one or sign up?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "Collect Email",
+    "name": "31b5b41a-ec8f-4166-88fb-f9d32bc91501"
+  } ]
+}
