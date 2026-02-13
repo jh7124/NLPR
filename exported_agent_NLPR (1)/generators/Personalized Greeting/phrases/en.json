@@ -1,6 +1,0 @@
-{
-  "promptTexts": [ {
-    "text": "Generate a warm, friendly greeting for a customer visiting ShopEase support. \nThe current time context is: $sys.time\nKeep it brief (1-2 sentences) and mention you can help with orders, returns, shipping, or general questions.\nVary the greeting to feel natural and not robotic.",
-    "languageCode": "en"
-  } ]
-}

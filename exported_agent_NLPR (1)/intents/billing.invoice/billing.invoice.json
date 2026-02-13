@@ -1,7 +1,0 @@
-{
-  "name": "005a9409-fdcf-435f-97f1-1e5e08bede34",
-  "displayName": "billing.invoice",
-  "priority": 500000,
-  "description": "Request invoice",
-  "numTrainingPhrases": 10
-}
