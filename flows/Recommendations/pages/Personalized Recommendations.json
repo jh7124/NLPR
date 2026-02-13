@@ -1,0 +1,62 @@
+{
+  "name": "d86d9845-85ad-477b-877d-b6a009cc3ca3",
+  "displayName": "Personalized Recommendations",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "webhook": "ShopEase Backend",
+    "tag": "get_recommendations"
+  },
+  "transitionRoutes": [ {
+    "intent": "shopping.add_to_cart",
+    "triggerFulfillment": {
+      "webhook": "ShopEase Backend",
+      "tag": "add_to_cart",
+      "setParameterActions": [ {
+        "parameter": "product",
+        "value": "$intent.params.product"
+      }, {
+        "parameter": "quantity",
+        "value": "$intent.params.quantity"
+      } ]
+    },
+    "name": "d0da8e0a-b92a-469b-beb7-87f3f86f5a78"
+  }, {
+    "intent": "confirm.yes",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Which item would you like to add? You can say 'The headphones' or 'The watch'. You can also click on the product action chips." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "752cf2e5-7a6c-40b6-a661-19fcf8d95fdf"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+    
+    },
+    "name": "c267c2cb-2fed-4d23-b89d-265548c0821c",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "shopping.product_details",
+    "triggerFulfillment": {
+      "webhook": "ShopEase Backend",
+      "tag": "get_product_details",
+      "setParameterActions": [ {
+        "parameter": "product",
+        "value": "$intent.params.product"
+      } ]
+    },
+    "name": "9463c5fc-5e74-4b94-b8cc-43ece3ab1b2b"
+  }, {
+    "intent": "shopping.view_cart",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Cart Management",
+    "name": "8cb8b45c-2914-4658-9889-cce19b0084ec"
+  } ]
+}

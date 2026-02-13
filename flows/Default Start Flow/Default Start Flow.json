@@ -1,0 +1,117 @@
+{
+  "name": "00000000-0000-0000-0000-000000000000",
+  "displayName": "Default Start Flow",
+  "description": "A start flow created along with the agent",
+  "transitionRoutes": [ {
+    "intent": "Default Welcome Intent",
+    "triggerFulfillment": {
+    
+    },
+    "name": "9f1b3bc4-e3bb-440a-8f34-8fb9dbc6b225",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "escalate.human",
+    "triggerFulfillment": {
+    
+    },
+    "name": "50bc385c-4aa5-428e-bcb1-996611e7dc15"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Order Management\"",
+    "triggerFulfillment": {
+      "setParameterActions": [ {
+        "parameter": "order_number",
+        "value": "$playbook.output.order_number"
+      } ]
+    },
+    "targetFlow": "Order Management",
+    "name": "b82c767f-34f7-4033-9218-c074d4219446"
+  }, {
+    "condition": "$session.params.order_number != null",
+    "triggerFulfillment": {
+      "setParameterActions": [ {
+        "parameter": "order_number",
+        "value": "$playbook.output.order_number"
+      } ]
+    },
+    "targetFlow": "Order Management",
+    "name": "541b66f5-607d-4472-a218-cad5ff63be1f"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Returns\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Returns",
+    "name": "7b3a4ff0-1276-48c6-90ee-a558ff881581"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Product Info\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Product Info",
+    "name": "8c1ea8cd-f6e9-4d82-b0c5-9729ccfc08f7"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Human Escalation\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Human Escalation",
+    "name": "3044b14f-204d-448f-866a-c2600bd51ad6"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Billing\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Billing",
+    "name": "03585066-0f3b-4413-9885-2e0936e4383d"
+  }, {
+    "condition": "$playbook.output.route_to_flow = \"Cart Management\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Cart Management",
+    "name": "3b622925-835c-4c07-85f0-57f26ec7f3af"
+  } ],
+  "eventHandlers": [ {
+    "event": "sys.no-match-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ],
+      "enableGenerativeFallback": true,
+      "dataStore": {
+        "dataStoreTool": "projects/nimble-augury-484901-q4/locations/us-central1/agents/4a2d82ac-e198-4a12-b556-2100d2036faa/tools/2cd00f20-b45d-4e5e-949e-b7192f0cb616"
+      }
+    },
+    "name": "812a2147-0ac7-45d5-b47e-49d1ceeae658",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "event": "sys.no-input-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Hello! Welcome to ShopEase Support. How can I help you today?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "cec8eb6a-ccdb-48a1-bc7d-9fc3de5e7967",
+    "targetPlaybook": "Main Support Handler"
+  } ],
+  "nluSettings": {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001
+  },
+  "nluSettingsList": [ {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001,
+    "customConfigKey": "fe9c2713-7eff-4e9b-991c-b04f5df9d212",
+    "languageCode": "en"
+  } ],
+  "multiLanguageSettings": {
+    "enableMultiLanguageDetection": true,
+    "supportedResponseLanguageCodes": [ "en" ]
+  }
+}

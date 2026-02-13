@@ -1,0 +1,42 @@
+{
+  "name": "e8b467dd-4774-4c0a-a5a6-61204a36a1d3",
+  "displayName": "Close Ticket",
+  "form": {
+    "parameters": [ {
+      "displayName": "ticket_id",
+      "required": true,
+      "entityType": "@sys.any",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "Please enter the Ticket ID you wish to close (e.g., ESC-12345678)." ]
+            },
+            "languageCode": "en"
+          } ]
+        },
+        "repromptEventHandlers": [ {
+          "targetPage": "Close Ticket",
+          "event": "sys.invalid-parameter",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "I need the Ticket ID to proceed. It usually starts with 'ESC-'." ]
+              },
+              "languageCode": "en"
+            } ]
+          },
+          "name": "3f945953-1d2a-45df-844a-b2e5df688446"
+        } ]
+      }
+    } ]
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Confirm Close",
+    "name": "82e02f0e-a634-4de6-9f9b-8a1b3ecabc43"
+  } ]
+}

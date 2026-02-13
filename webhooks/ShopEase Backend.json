@@ -1,0 +1,11 @@
+{
+  "name": "b88591cf-b98b-4dca-a379-d32a3c4bd1ec",
+  "displayName": "ShopEase Backend",
+  "genericWebService": {
+    "uri": "https://shopease-webhook-49002150833.us-central1.run.app",
+    "webhookType": "STANDARD"
+  },
+  "timeout": {
+    "seconds": 30
+  }
+}

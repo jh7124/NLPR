@@ -1,0 +1,32 @@
+{
+  "trainingPhrases": [ {
+    "parts": [ {
+      "text": "Take "
+    }, {
+      "text": "shoes",
+      "parameterId": "product"
+    }, {
+      "text": " out of cart"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  }, {
+    "parts": [ {
+      "text": "Delete "
+    }, {
+      "text": "watch",
+      "parameterId": "product"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  }, {
+    "parts": [ {
+      "text": "Remove "
+    }, {
+      "text": "Bluetooth Speaker",
+      "parameterId": "product"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  } ]
+}

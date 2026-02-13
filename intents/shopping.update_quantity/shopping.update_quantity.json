@@ -1,0 +1,13 @@
+{
+  "name": "0633e0f9-c9a2-4c86-9f14-590ea8b5b623",
+  "displayName": "shopping.update_quantity",
+  "parameters": [ {
+    "id": "quantity",
+    "entityType": "@sys.number"
+  }, {
+    "id": "product",
+    "entityType": "@sys.any"
+  } ],
+  "priority": 500000,
+  "numTrainingPhrases": 3
+}

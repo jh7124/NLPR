@@ -1,0 +1,52 @@
+{
+  "name": "f21a99cd-283f-474a-b915-067136f233d4",
+  "displayName": "Display Order",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Status: $session.params.order_status\n\nWhat would you like to do?\n• Start a return\n• Get more details\n• That's all I needed" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "return.initiate",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Returns",
+    "name": "9cfd672f-bd14-4801-98ea-67a830d74414"
+  }, {
+    "intent": "goodbye",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Great! Is there anything else I can help you with?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "54e7523e-1726-4171-974b-959d4dcfdb95",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+    
+    },
+    "name": "48496665-48a4-423c-9263-c2caede43829",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "order.track",
+    "triggerFulfillment": {
+      "setParameterActions": [ {
+        "parameter": "order_number",
+        "value": "$intent.params.order_number"
+      } ]
+    },
+    "targetPage": "Collect Order Number",
+    "name": "55d09c88-5493-4bd5-a191-75508f4757de"
+  } ]
+}

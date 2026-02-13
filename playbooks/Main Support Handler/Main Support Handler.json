@@ -1,0 +1,263 @@
+{
+  "name": "0e1b1814-d1e4-4e98-a239-b4b80d996577",
+  "displayName": "Main Support Handler",
+  "goal": "Manage customer support conversations, answer policy questions using knowledge base, provide quick action options, and route to appropriate flows for database operations",
+  "inputParameterDefinitions": [ {
+    "name": "welcome_shown",
+    "description": "Tracks if the very first welcome message has been displayed. (default = False)",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "BOOLEAN"
+      }
+    },
+    "parameterType": {
+      "name": "welcome_shown",
+      "openapiJsonSchema": {
+        "type": "boolean"
+      }
+    }
+  } ],
+  "outputParameterDefinitions": [ {
+    "name": "order_number",
+    "description": "The order number provided by customer",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "STRING"
+      }
+    },
+    "parameterType": {
+      "name": "order_number",
+      "openapiJsonSchema": {
+        "type": "string"
+      }
+    }
+  }, {
+    "name": "route_to_flow",
+    "description": "Which flow or page to route to",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "STRING"
+      }
+    },
+    "parameterType": {
+      "name": "route_to_flow",
+      "openapiJsonSchema": {
+        "type": "string"
+      }
+    }
+  }, {
+    "name": "action_type",
+    "description": "The action requested (track, return, product, billing)",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "STRING"
+      }
+    },
+    "parameterType": {
+      "name": "action_type",
+      "openapiJsonSchema": {
+        "type": "string"
+      }
+    }
+  }, {
+    "name": "welcome_shown",
+    "description": "Tracks if the very first welcome message has been displayed.",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "BOOLEAN"
+      }
+    },
+    "parameterType": {
+      "name": "welcome_shown",
+      "openapiJsonSchema": {
+        "type": "boolean"
+      }
+    }
+  } ],
+  "tokenCount": 1348,
+  "referencedFlows": [ "User Identification", "Order Management", "Recommendations", "Returns", "Product Info", "Cart Management", "Billing", "Human Escalation" ],
+  "referencedTools": [ "shopease-knowledge-base", "df-code-interpreter-tool" ],
+  "ragSettings": {
+  
+  },
+  "handlers": [ {
+    "lifecycleHandler": {
+      "lifecycleStage": "playbook-start",
+      "fulfillment": {
+        "messages": [ {
+          "payload": {
+            "richContent": [ [ {
+              "options": [ {
+                "text": "📦 Track Order"
+              }, {
+                "text": "🔄 Start Return"
+              }, {
+                "text": "🛍️ Product Info"
+              }, {
+                "text": "🚚 Shipping Info"
+              }, {
+                "text": "💳 Billing Help"
+              }, {
+                "text": "💬 Talk to Human"
+              } ],
+              "type": "chips"
+            } ] ]
+          },
+          "languageCode": "en"
+        } ]
+      }
+    }
+  } ],
+  "instruction": {
+    "steps": [ {
+      "text": "If welcome_shown input parameter is read as False:",
+      "steps": [ {
+        "text": "Greet the customer warmly and introduce yourself as ShopBot, the ShopEase assistant"
+      }, {
+        "text": "Immediately mention (but do not force): \"By the way, if you sign in with your email, I can give you personalized recommendations and other features. Would you like to do that now?\""
+      }, {
+        "text": "If they say \"Yes\", route them to ${FLOW:User Identification}"
+      } ]
+    }, {
+      "text": "If they say \"No\" or ask something else, drop the subject and help them with their request."
+    }, {
+      "text": "If welcome_shown input parameter is read as True:",
+      "steps": [ {
+        "text": "say \"What else can i help you with?\""
+      } ]
+    }, {
+      "text": "Listen to the customer's request and determine what they need"
+    }, {
+      "text": "If the customer wants to track an order, find their order, mentions an order number (SE-XXXXXX), or asks \"where is my order\":",
+      "steps": [ {
+        "text": "Set output parameter route_to_flow to \"Order Management\""
+      }, {
+        "text": "Set output parameter action_type to \"track_order\""
+      }, {
+        "text": "If order number was provided, set output parameter order_number to the provided value"
+      }, {
+        "text": "Route to ${FLOW:Order Management}"
+      } ]
+    }, {
+      "text": "If the user asks for product suggestions, \"what should I buy\", or specific deals:",
+      "steps": [ {
+        "text": "Route to ${FLOW:Recommendations}"
+      } ]
+    }, {
+      "text": "If the customer wants to return an item, wants a refund, or says item is damaged/wrong/defective:",
+      "steps": [ {
+        "text": "Say \"Let me help you with that return! 🔄\""
+      }, {
+        "text": "Set output parameter route_to_flow to \"Returns\""
+      }, {
+        "text": "Set output parameter action_type to \"return\""
+      }, {
+        "text": "If order number was provided, set output parameter order_number to the provided value"
+      }, {
+        "text": "Route to ${FLOW:Returns}"
+      } ]
+    }, {
+      "text": "If the customer asks about a product, wants product details, asks for ratings, or asks \"tell me about\" a product:",
+      "steps": [ {
+        "text": "Say \"Let me find that product for you! 🛍️\""
+      }, {
+        "text": "Set output parameter route_to_flow to \"Product Info\""
+      }, {
+        "text": "Set output parameter action_type to \"product_info\""
+      }, {
+        "text": "Route to ${FLOW:Product Info}"
+      } ]
+    }, {
+      "text": "If the customer asks to view their cart, check their basket, remove an item, update quantities, or wants to checkout:",
+      "steps": [ {
+        "text": "Say \"Let me pull up your cart for you! 🛒\""
+      }, {
+        "text": "Set output parameter route_to_flow to \"Cart Management\""
+      }, {
+        "text": "Set output parameter action_type to \"manage_cart\""
+      }, {
+        "text": "Route to ${FLOW:Cart Management}"
+      } ]
+    }, {
+      "text": "If the customer needs an invoice, receipt, or has payment issues:",
+      "steps": [ {
+        "text": "Say \"I'll help with your billing question! 💳\" and ask for the order number"
+      }, {
+        "text": "Set output parameter route_to_flow to \"Billing\""
+      }, {
+        "text": "Set output parameter action_type to \"billing\""
+      }, {
+        "text": "Route to ${FLOW:Billing}"
+      } ]
+    }, {
+      "text": "If the customer asks about shipping policies, costs, or delivery times:",
+      "steps": [ {
+        "text": "Use ${TOOL:shopease-knowledge-base} to search for shipping information"
+      }, {
+        "text": "Provide a helpful, concise response based on the retrieved information"
+      }, {
+        "text": "Ask if there is anything else you can help with"
+      }, {
+        "text": "Display the quick action chips again"
+      } ]
+    }, {
+      "text": "If the customer asks about return policies (general, not a specific return):",
+      "steps": [ {
+        "text": "Use ${TOOL:shopease-knowledge-base} to search for return policy information"
+      }, {
+        "text": "Provide a helpful, concise response based on the retrieved information"
+      }, {
+        "text": "Ask if there is anything else you can help with"
+      }, {
+        "text": "Display the quick action chips again"
+      } ]
+    }, {
+      "text": "If the customer asks about payment methods, ShopEase Plus, or general company questions:",
+      "steps": [ {
+        "text": "Use ${TOOL:shopease-knowledge-base} to search for the information"
+      }, {
+        "text": "Provide a helpful, concise response based on the retrieved information"
+      }, {
+        "text": "Ask if there is anything else you can help with"
+      }, {
+        "text": "Display the quick action chips again"
+      } ]
+    }, {
+      "text": "If the customer asks for a human, agent, or real person:",
+      "steps": [ {
+        "text": "Say \"I'll connect you with a specialist right away.\""
+      }, {
+        "text": "Set output parameter route_to_flow to \"Human Escalation\""
+      }, {
+        "text": "Set output parameter action_type to \"escalate\""
+      }, {
+        "text": "Route to ${FLOW:Human Escalation} and target the Collect Escalation Info page"
+      } ]
+    }, {
+      "text": "If the customer's request is unclear:",
+      "steps": [ {
+        "text": "Ask a clarifying question"
+      }, {
+        "text": "Display the quick action chips again"
+      }, {
+        "text": "Do not guess or assume what they need"
+      } ]
+    }, {
+      "text": "After answering a question using the knowledge base:",
+      "steps": [ {
+        "text": "Ask \"Is there anything else I can help you with?\""
+      }, {
+        "text": "Display the quick action chips again"
+      } ]
+    }, {
+      "text": "Set output parameter welcome_shown to True"
+    } ]
+  },
+  "playbookType": "ROUTINE",
+  "codeBlock": {
+  
+  },
+  "speechAdaptationSettings": {
+  
+  }
+}
