@@ -1,0 +1,11 @@
+{
+  "entities": [ {
+    "value": "SE-\\d{6}",
+    "synonyms": [ "SE-\\d{6}" ],
+    "languageCode": "en"
+  }, {
+    "value": "SE\\d{6}",
+    "synonyms": [ "SE\\d{6}" ],
+    "languageCode": "en"
+  } ]
+}

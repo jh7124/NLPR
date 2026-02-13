@@ -1,0 +1,36 @@
+{
+  "name": "c977abc5-1ff6-47cf-a379-c57b7299f60a",
+  "displayName": "Confirm Close",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Are you sure you want to mark ticket $session.params.ticket_id as resolved?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "confirm.yes",
+    "triggerFulfillment": {
+      "webhook": "ShopEase Backend",
+      "tag": "close_ticket_simulation"
+    },
+    "name": "a7a99461-7730-45f8-a036-af48aa735761",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Okay, request cancelled. The ticket will remain open." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "673b1fbb-59c5-41eb-b1b8-a3dc2f52674c",
+    "targetPlaybook": "Main Support Handler"
+  } ]
+}

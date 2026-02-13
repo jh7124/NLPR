@@ -1,0 +1,23 @@
+{
+  "entities": [ {
+    "value": "sports",
+    "synonyms": [ "athletics", "exercise", "fitness", "sports" ],
+    "languageCode": "en"
+  }, {
+    "value": "beauty",
+    "synonyms": [ "beauty", "cosmetics", "makeup", "personal care", "skincare" ],
+    "languageCode": "en"
+  }, {
+    "value": "home",
+    "synonyms": [ "decor", "furniture", "home", "home goods", "household" ],
+    "languageCode": "en"
+  }, {
+    "value": "clothing",
+    "synonyms": [ "apparel", "clothing", "garments", "wearables" ],
+    "languageCode": "en"
+  }, {
+    "value": "electronics",
+    "synonyms": [ "appliances", "devices", "electronics", "gadgets" ],
+    "languageCode": "en"
+  } ]
+}

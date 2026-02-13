@@ -1,0 +1,40 @@
+{
+  "name": "2cd00f20-b45d-4e5e-949e-b7192f0cb616",
+  "displayName": "shopease-knowledge-base",
+  "dataStoreSpec": {
+    "dataStoreConnections": [ {
+      "dataStoreType": "UNSTRUCTURED",
+      "dataStore": "projects/49002150833/locations/us/collections/default_collection/dataStores/shopease-knowledge-base_1769676696793",
+      "documentProcessingMode": "DOCUMENTS",
+      "engineType": "CHAT_ENGINE",
+      "connectorConfig": {
+      
+      },
+      "createTime": {
+        "seconds": 1769676720,
+        "nanos": 566907000
+      },
+      "displayName": "shopease-knowledge-base",
+      "dialogflowAddTime": {
+        "seconds": 1769677769,
+        "nanos": 907000000
+      }
+    } ],
+    "models": {
+      "summarizationModel": {
+        "model": "default"
+      },
+      "rewriterModel": {
+        "model": "default"
+      }
+    },
+    "groundingSettings": {
+    
+    },
+    "payloadSettings": {
+    
+    },
+    "mode": "MODE_DEFAULT"
+  },
+  "toolType": "CUSTOMIZED_TOOL"
+}

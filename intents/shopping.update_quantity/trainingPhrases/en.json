@@ -1,0 +1,45 @@
+{
+  "trainingPhrases": [ {
+    "parts": [ {
+      "text": "I actually want "
+    }, {
+      "text": "3",
+      "parameterId": "quantity"
+    }, {
+      "text": " "
+    }, {
+      "text": "speakers",
+      "parameterId": "product"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  }, {
+    "parts": [ {
+      "text": "Set "
+    }, {
+      "text": "headphones",
+      "parameterId": "product"
+    }, {
+      "text": " quantity to"
+    }, {
+      "text": " 1",
+      "parameterId": "quantity"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  }, {
+    "parts": [ {
+      "text": "Change "
+    }, {
+      "text": "watch",
+      "parameterId": "product"
+    }, {
+      "text": " to "
+    }, {
+      "text": "2",
+      "parameterId": "quantity"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  } ]
+}

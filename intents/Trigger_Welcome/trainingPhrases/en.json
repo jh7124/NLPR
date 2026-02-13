@@ -1,0 +1,9 @@
+{
+  "trainingPhrases": [ {
+    "parts": [ {
+      "text": "CUSTOM_INIT_TRIGGER"
+    } ],
+    "repeatCount": 1,
+    "languageCode": "en"
+  } ]
+}

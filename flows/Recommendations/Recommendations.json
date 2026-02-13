@@ -1,0 +1,80 @@
+{
+  "name": "d2a01be2-05c2-45f5-ba5c-265ffeca7487",
+  "displayName": "Recommendations",
+  "transitionRoutes": [ {
+    "condition": "$session.params.customer_email = null",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Sign-In is required for this feature. I'll take you to the login page quickly." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetFlow": "User Identification",
+    "name": "dc4eeb83-9e4b-4453-917d-fcaf7235fb00"
+  }, {
+    "condition": "$session.params.customer_email != null",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Personalized Recommendations",
+    "name": "b54ee6d8-fc1d-4c3d-9790-18a7db255d67"
+  } ],
+  "eventHandlers": [ {
+    "event": "sys.no-match-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "0da95d7e-e000-4e28-a61c-9e7aff4585f6"
+  }, {
+    "event": "sys.no-input-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "d5a15b1c-0f77-41fc-8fca-904ee6efd1df"
+  } ],
+  "nluSettings": {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001,
+    "modelTrainingMode": "MODEL_TRAINING_MODE_AUTOMATIC"
+  },
+  "advancedSettings": {
+    "enabled": true
+  },
+  "nluSettingsList": [ {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001,
+    "modelTrainingMode": "MODEL_TRAINING_MODE_AUTOMATIC",
+    "customConfigKey": "c0eb0656-d3c8-408d-a1e9-b0dc0b6665e6",
+    "languageCode": "en"
+  } ],
+  "inputParameterDefinitions": [ {
+    "name": "customer_email",
+    "description": "taken from sessionInfo.parameters.customer_email",
+    "typeSchema": {
+      "inlineSchema": {
+        "type": "STRING"
+      }
+    },
+    "parameterType": {
+      "name": "customer_email",
+      "openapiJsonSchema": {
+        "type": "string"
+      }
+    }
+  } ],
+  "multiLanguageSettings": {
+  
+  }
+}

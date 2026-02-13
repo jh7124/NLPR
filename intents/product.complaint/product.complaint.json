@@ -1,0 +1,7 @@
+{
+  "name": "97f0e007-bdc1-48eb-8597-d256a05bd4df",
+  "displayName": "product.complaint",
+  "priority": 500000,
+  "description": "Quality complaint",
+  "numTrainingPhrases": 10
+}

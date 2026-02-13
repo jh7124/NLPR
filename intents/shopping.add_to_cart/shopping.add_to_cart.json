@@ -1,0 +1,13 @@
+{
+  "name": "1c935490-4449-4b65-b87f-a4b1ea307c6c",
+  "displayName": "shopping.add_to_cart",
+  "parameters": [ {
+    "id": "product_name",
+    "entityType": "@sys.any"
+  }, {
+    "id": "quantity",
+    "entityType": "@sys.number"
+  } ],
+  "priority": 500000,
+  "numTrainingPhrases": 4
+}

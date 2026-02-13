@@ -1,0 +1,10 @@
+{
+  "name": "abcde5d5-b7e5-4dc1-8a34-a61c7afa7cf6",
+  "displayName": "shopping.product_details",
+  "parameters": [ {
+    "id": "product",
+    "entityType": "@sys.any"
+  } ],
+  "priority": 500000,
+  "numTrainingPhrases": 5
+}

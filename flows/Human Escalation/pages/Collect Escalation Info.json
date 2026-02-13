@@ -1,0 +1,88 @@
+{
+  "name": "c9fc0326-138b-44ed-8595-e168cca36bec",
+  "displayName": "Collect Escalation Info",
+  "form": {
+    "parameters": [ {
+      "displayName": "customer_email",
+      "required": true,
+      "entityType": "@sys.email",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "What is your email address?" ]
+            },
+            "languageCode": "en"
+          } ]
+        },
+        "repromptEventHandlers": [ {
+          "targetPage": "Collect Escalation Info",
+          "event": "sys.invalid-parameter",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "Sorry, that doesn't look like a valid email address. Please enter your email in the format name@example.com." ]
+              },
+              "languageCode": "en"
+            } ]
+          },
+          "name": "34a1f9b3-bc01-4136-80d0-01bff158a81f"
+        }, {
+          "targetPage": "Collect Escalation Info",
+          "event": "sys.no-match-default",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "I didn't quite catch that. Could you please type your email address again?" ]
+              },
+              "languageCode": "en"
+            } ],
+            "enableGenerativeFallback": true
+          },
+          "name": "4b7be228-0429-4999-aff6-de3c5b974a08"
+        } ]
+      }
+    }, {
+      "displayName": "order_number",
+      "entityType": "@order_number",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+          "messages": [ {
+            "text": {
+              "text": [ "What is the relevant order number? (optional)" ]
+            },
+            "languageCode": "en"
+          } ]
+        }
+      }
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "I can connect you to an agent. First, I need to collect your email (required) \u0026 order number id (optional)" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Ok, cancelling support ticket." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "856820d5-80dd-4d9a-af8c-ca77e9097007",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Human Handoff",
+    "name": "25891717-c026-4830-b4df-7e040535e596"
+  } ]
+}

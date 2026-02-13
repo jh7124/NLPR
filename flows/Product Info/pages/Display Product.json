@@ -1,0 +1,88 @@
+{
+  "name": "c8f4bf64-4d58-4b4e-a4e7-be2b01887bb0",
+  "displayName": "Display Product",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Looking up that product for you..." ]
+      },
+      "languageCode": "en"
+    } ],
+    "webhook": "ShopEase Backend",
+    "tag": "get_product_info"
+  },
+  "transitionRoutes": [ {
+    "intent": "goodbye",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Thanks for asking!" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "3d722d22-c993-4a40-b147-e5ac7c5cd061",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "confirm.no",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Okay!" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "2b0c7dcc-8ca4-42b9-a975-4b3b3fbbc22f",
+    "targetPlaybook": "Main Support Handler"
+  }, {
+    "intent": "shopping.add_to_cart",
+    "condition": "true",
+    "triggerFulfillment": {
+      "webhook": "ShopEase Backend",
+      "tag": "add_to_cart",
+      "setParameterActions": [ {
+        "parameter": "product",
+        "value": "$intent.params.product"
+      }, {
+        "parameter": "quantity",
+        "value": "$intent.params.quantity"
+      } ]
+    },
+    "name": "609c5737-0af3-4c7f-bbec-ba91cab16ca8"
+  }, {
+    "intent": "shopping.product_details",
+    "condition": "true",
+    "triggerFulfillment": {
+      "webhook": "ShopEase Backend",
+      "tag": "get_product_info",
+      "setParameterActions": [ {
+        "parameter": "product",
+        "value": "$intent.params.product"
+      } ]
+    },
+    "name": "274218e9-2a1d-46b9-b828-7c9d672ee34d"
+  }, {
+    "intent": "shopping.view_cart",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Cart Management",
+    "name": "fe73204b-7fc2-4c58-95af-1072fb6cb2cc"
+  }, {
+    "condition": "$session.params.product_found = false",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "This product was not found, try again with a different one." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "Collect Product Name",
+    "name": "9a4a8789-51b9-4878-8a68-05584aac29e0"
+  } ]
+}
